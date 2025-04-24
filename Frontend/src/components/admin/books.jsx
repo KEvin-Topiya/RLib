@@ -7,6 +7,7 @@ const BookList = () => {
   const [books, setBooks] = useState([]);
   const [editingBook, setEditingBook] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [showGroupedByIsbn, setShowGroupedByIsbn] = useState(false);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -22,6 +23,22 @@ const BookList = () => {
 
   const filteredBooks = books.filter((book) =>
     book.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const groupedBooks = books.reduce((acc, book) => {
+    if (!acc[book.isbn]) {
+      acc[book.isbn] = { ...book, count: 1 };
+    } else {
+      acc[book.isbn].count += 1;
+    }
+    return acc;
+  }, {});
+
+  // Filter grouped ISBN list based on search
+  const filteredGroupedBooks = Object.entries(groupedBooks).filter(
+    ([isbn, book]) =>
+      book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      isbn.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleDelete = async (id) => {
@@ -41,7 +58,9 @@ const BookList = () => {
   const handleSave = async () => {
     try {
       await axios.post(`${CONFIG.DOMAIN}${CONFIG.API.EDIT_BOOK}`, editingBook);
-      setBooks(books.map((book) => (book.book_id === editingBook.book_id ? { ...book, ...editingBook } : book)));
+      setBooks(books.map((book) =>
+        book.book_id === editingBook.book_id ? { ...book, ...editingBook } : book
+      ));
       setShowModal(false);
     } catch (error) {
       console.error("Error updating book:", error);
@@ -51,19 +70,43 @@ const BookList = () => {
   return (
     <div className="book-list-container">
       <h2>Book List</h2>
+
       <input
         type="text"
-        placeholder="Search books..."
+        placeholder="Search by title or ISBN..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="search-bar"
       />
+
+      <button
+        onClick={() => setShowGroupedByIsbn(!showGroupedByIsbn)}
+        className="group-by-isbn-btn"
+      >
+        {showGroupedByIsbn ? "Show All Books" : "Show by ISBN"}
+      </button>
+
       <ul className="book-list">
-        {filteredBooks.length > 0 ? (
+        {showGroupedByIsbn ? (
+          filteredGroupedBooks.length > 0 ? (
+            filteredGroupedBooks.map(([isbn, book]) => (
+              <li key={isbn} className="book-item">
+                <div>
+                  <strong>{book.title}</strong> (ISBN: {isbn})<br />
+                </div>
+                  <span style={{ fontSize: "0.9rem", color: "#555" }}>
+                    Total Books: {book.count}
+                  </span>
+              </li>
+            ))
+          ) : (
+            <p>No ISBN matches found.</p>
+          )
+        ) : filteredBooks.length > 0 ? (
           filteredBooks.map((book) => (
             <li key={book.book_id || book.id} className="book-item">
               <div>
-                <span className="book-id" style={{marginRight:"1rem"}}>{book.book_id}</span>
+                <span className="book-id" style={{ marginRight: "1rem" }}>{book.book_id}</span>
                 <strong>{book.title}</strong> - {book.author}
               </div>
               <div className="buttons">
@@ -76,7 +119,8 @@ const BookList = () => {
           <p>No books found.</p>
         )}
       </ul>
-      {showModal && (
+
+      {showModal && editingBook && (
         <div className="modal">
           <div className="modal-content">
             <h3>Edit Book</h3>

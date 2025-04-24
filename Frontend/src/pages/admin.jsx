@@ -11,8 +11,10 @@ import Addexl from "../components/admin/addexl";
 import AddBooks from "../components/admin/addbook";
 import Return from "../components/admin/return";
 import Logout from "./logout";
+import Grid3DPreview from "./Library3DView";
+import GridEditor from "../components/3dLib/grideditor";
 
-import { BookOpen, Users, BarChart2, Settings, Home, PlusCircle, BookUp, BookDown, UserRoundCog, ReceiptIndianRupee } from "lucide-react";
+import { BookOpen, Users, BarChart2, Settings, Home, PlusCircle, BookUp, BookDown, UserRoundCog, ReceiptIndianRupee, Library } from "lucide-react";
 import Notifications from "../components/notification";
 import AdminAnalytics from "../components/admin/analytics";
 import IssuedBooksList from "../components/borowed";
@@ -32,6 +34,8 @@ export default function Admin() {
     { icon: ReceiptIndianRupee, label: "Fine", path: "/admin/fine" },
     { icon: BarChart2, label: "Analytics", path: "/admin/analytics" },
     { icon: UserRoundCog, label: "Profile", path: "/admin/Profile" },
+    { icon: Library, label: "Editor", path: "/admin/library-map" },
+    { icon: Library, label: "Viewr", path: "/admin/Lib3dViewr" },
   ]
 
   const navigate = useNavigate();
@@ -64,6 +68,10 @@ export default function Admin() {
           <Route path="/fine" element={<FineList role={user.role} />} />
           <Route path="/analytics" element={<AdminAnalytics  />} />
           <Route path="/Profile" element={<Profile role={user} />} />
+          {/* <Route path="/library-map" element={< Cube/>} /> */}
+          <Route path="/library-map" element={<GridEditor />} />
+          <Route path="/Lib3dViewr" element={<Grid3DPreview />} />
+          
 
           <Route path="/books" element={<Books />} />
           <Route path="/users" element={<UserList />} />

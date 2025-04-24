@@ -17,7 +17,7 @@ export default function Notifications() {
       const response = await axios.post(`${CONFIG.DOMAIN}${CONFIG.API.Notification}`, {
         EnrollmentNo: sessionStorage.getItem("id"),
       });
-      setNotifications(response.data.data || []);
+      setNotifications(response.data.notifications || []);
     } catch (error) {
       console.error("Error fetching notifications:", error);
     }
@@ -30,19 +30,22 @@ export default function Notifications() {
   // Function to handle opening a notification
   const handleOpenNotification = async (notification) => {
     setSelectedNotification(notification);
+  
     if (notification.status === "unseen") {
       try {
-        await axios.post(`${CONFIG.DOMAIN}${CONFIG.API.UPDATE_NOTIFICATION}`, { id: notification.id, status: "seen" });
-        setNotifications((prevNotifications) =>
-          prevNotifications.map((notif) =>
-            notif.id === notification.id ? { ...notif, status: "seen" } : notif
-          )
-        );
+        const response = await axios.post(`${CONFIG.DOMAIN}${CONFIG.API.Notification}`, {
+          EnrollmentNo: sessionStorage.getItem("id"),
+          markAsSeenId: notification.id,
+        });
+  
+        // Refresh the list with updated notifications
+        setNotifications(response.data.notifications || []);
       } catch (error) {
-        console.error("Error updating notification status:", error);
+        console.error("Error marking notification as seen:", error);
       }
     }
   };
+  
 
   return (
     <div className="notifications-container">
@@ -63,23 +66,42 @@ export default function Notifications() {
                 className={`notification-item ${notification.status}`} 
                 onClick={() => handleOpenNotification(notification)}
               >
-                <div className="notification-title">{notification.title}</div>
-                <p style={{ fontWeight: "normal", color: "#666" }}>&nbsp;&nbsp;{notification.message}</p>
+                <div className="notification-title">{notification.noti_title}</div>
+                <p style={{ fontWeight: "normal", color: "#666" }}>&nbsp;&nbsp;{notification.description}</p>
               </li>
             ))}
         </ul>
       )}
+{notifications.some((n) => n.status === "unseen") && (
+  <button
+    className="read-all-btn"
+    onClick={async () => {
+      try {
+        const response = await axios.post(`${CONFIG.DOMAIN}${CONFIG.API.Notification}`, {
+          EnrollmentNo: sessionStorage.getItem("id"),
+          readAll: true,
+        });
+        setNotifications(response.data.notifications || []);
+      } catch (error) {
+        console.error("Error marking all as read:", error);
+      }
+    }}
+  >
+    Mark All as Read
+  </button>
+)}
 
       <button onClick={() => setShowAll(!showAll)} className="all-notifications-btn">
         {showAll ? "Show Unseen Only" : "Show All Notifications"}
       </button>
+      
 
       {selectedNotification && (
         <div className="dialog-overlay" onClick={() => setSelectedNotification(null)}>
           <div className="dialog-box" onClick={(e) => e.stopPropagation()}>
-            <h3>{selectedNotification.title}</h3>
-            <p>{selectedNotification.message}</p>
-            <div className="notification-timestamp">{selectedNotification.timestamp}</div>
+            <h3>{selectedNotification.noti_title}</h3>
+            <p>{selectedNotification.description}</p>
+            <div className="notification-timestamp">{selectedNotification.created_at}</div>
             <button className="close-btn" onClick={() => setSelectedNotification(null)}>Close</button>
           </div>
         </div>

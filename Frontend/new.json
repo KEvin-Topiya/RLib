@@ -1,0 +1,401 @@
+{
+  "title": "new",
+  "rows": 8,
+  "cols": 16,
+  "grid": [
+    [
+      {
+        "label": "Entery",
+        "color": "#8B4513",
+        "type": "door",
+        "groupId": "1745492336487"
+      },
+      null,
+      {
+        "label": "scaner",
+        "color": "#e01b24",
+        "type": "table",
+        "groupId": "1745492375904"
+      },
+      null,
+      null,
+      null,
+      {
+        "label": "mca",
+        "color": "#813d9c",
+        "type": "bookshelf",
+        "groupId": "1745492390557"
+      },
+      {
+        "label": "mca",
+        "color": "#813d9c",
+        "type": "bookshelf",
+        "groupId": "1745492390557"
+      },
+      {
+        "label": "mca",
+        "color": "#813d9c",
+        "type": "bookshelf",
+        "groupId": "1745492390557"
+      },
+      {
+        "label": "mca",
+        "color": "#813d9c",
+        "type": "bookshelf",
+        "groupId": "1745492390557"
+      },
+      {
+        "label": "mca",
+        "color": "#813d9c",
+        "type": "bookshelf",
+        "groupId": "1745492390557"
+      },
+      {
+        "label": "mca",
+        "color": "#813d9c",
+        "type": "bookshelf",
+        "groupId": "1745492390557"
+      },
+      {
+        "label": "mca",
+        "color": "#813d9c",
+        "type": "bookshelf",
+        "groupId": "1745492390557"
+      },
+      {
+        "label": "mca",
+        "color": "#813d9c",
+        "type": "bookshelf",
+        "groupId": "1745492390557"
+      },
+      {
+        "label": "mca",
+        "color": "#813d9c",
+        "type": "bookshelf",
+        "groupId": "1745492390557"
+      },
+      {
+        "label": "mca",
+        "color": "#813d9c",
+        "type": "bookshelf",
+        "groupId": "1745492390557"
+      }
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      {
+        "label": "desk",
+        "color": "#986a44",
+        "type": "desk",
+        "groupId": "1745492364675"
+      },
+      {
+        "label": "desk",
+        "color": "#986a44",
+        "type": "desk",
+        "groupId": "1745492364675"
+      },
+      {
+        "label": "desk",
+        "color": "#986a44",
+        "type": "desk",
+        "groupId": "1745492364675"
+      },
+      null,
+      null,
+      null,
+      {
+        "label": "BCA",
+        "color": "#ffa348",
+        "type": "bookshelf",
+        "groupId": "1745492413265"
+      },
+      {
+        "label": "BCA",
+        "color": "#ffa348",
+        "type": "bookshelf",
+        "groupId": "1745492413265"
+      },
+      {
+        "label": "BCA",
+        "color": "#ffa348",
+        "type": "bookshelf",
+        "groupId": "1745492413265"
+      },
+      {
+        "label": "BCA",
+        "color": "#ffa348",
+        "type": "bookshelf",
+        "groupId": "1745492413265"
+      },
+      {
+        "label": "BCA",
+        "color": "#ffa348",
+        "type": "bookshelf",
+        "groupId": "1745492413265"
+      },
+      {
+        "label": "BCA",
+        "color": "#ffa348",
+        "type": "bookshelf",
+        "groupId": "1745492413265"
+      },
+      {
+        "label": "BCA",
+        "color": "#ffa348",
+        "type": "bookshelf",
+        "groupId": "1745492413265"
+      },
+      {
+        "label": "BCA",
+        "color": "#ffa348",
+        "type": "bookshelf",
+        "groupId": "1745492413265"
+      },
+      {
+        "label": "BCA",
+        "color": "#ffa348",
+        "type": "bookshelf",
+        "groupId": "1745492413265"
+      },
+      {
+        "label": "BCA",
+        "color": "#ffa348",
+        "type": "bookshelf",
+        "groupId": "1745492413265"
+      }
+    ],
+    [
+      null,
+      null,
+      {
+        "label": "desk",
+        "color": "#986a44",
+        "type": "desk",
+        "groupId": "1745492364675"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "label": "desk",
+        "color": "#986a44",
+        "type": "desk",
+        "groupId": "1745492364675"
+      },
+      null,
+      null,
+      null,
+      {
+        "label": "MBA",
+        "color": "#1c71d8",
+        "type": "bookshelf",
+        "groupId": "1745492422582"
+      },
+      {
+        "label": "MBA",
+        "color": "#1c71d8",
+        "type": "bookshelf",
+        "groupId": "1745492422582"
+      },
+      {
+        "label": "MBA",
+        "color": "#1c71d8",
+        "type": "bookshelf",
+        "groupId": "1745492422582"
+      },
+      {
+        "label": "MBA",
+        "color": "#1c71d8",
+        "type": "bookshelf",
+        "groupId": "1745492422582"
+      },
+      {
+        "label": "MBA",
+        "color": "#1c71d8",
+        "type": "bookshelf",
+        "groupId": "1745492422582"
+      },
+      {
+        "label": "MBA",
+        "color": "#1c71d8",
+        "type": "bookshelf",
+        "groupId": "1745492422582"
+      },
+      {
+        "label": "MBA",
+        "color": "#1c71d8",
+        "type": "bookshelf",
+        "groupId": "1745492422582"
+      },
+      {
+        "label": "MBA",
+        "color": "#1c71d8",
+        "type": "bookshelf",
+        "groupId": "1745492422582"
+      },
+      {
+        "label": "MBA",
+        "color": "#1c71d8",
+        "type": "bookshelf",
+        "groupId": "1745492422582"
+      },
+      {
+        "label": "MBA",
+        "color": "#1c71d8",
+        "type": "bookshelf",
+        "groupId": "1745492422582"
+      }
+    ],
+    [
+      null,
+      null,
+      {
+        "label": "desk",
+        "color": "#986a44",
+        "type": "desk",
+        "groupId": "1745492364675"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "label": "desk",
+        "color": "#986a44",
+        "type": "desk",
+        "groupId": "1745492364675"
+      },
+      null,
+      null,
+      null,
+      {
+        "label": "LAW",
+        "color": "#3d3846",
+        "type": "bookshelf",
+        "groupId": "1745492433370"
+      },
+      {
+        "label": "LAW",
+        "color": "#3d3846",
+        "type": "bookshelf",
+        "groupId": "1745492433370"
+      },
+      {
+        "label": "LAW",
+        "color": "#3d3846",
+        "type": "bookshelf",
+        "groupId": "1745492433370"
+      },
+      {
+        "label": "LAW",
+        "color": "#3d3846",
+        "type": "bookshelf",
+        "groupId": "1745492433370"
+      },
+      {
+        "label": "LAW",
+        "color": "#3d3846",
+        "type": "bookshelf",
+        "groupId": "1745492433370"
+      },
+      {
+        "label": "LAW",
+        "color": "#3d3846",
+        "type": "bookshelf",
+        "groupId": "1745492433370"
+      },
+      {
+        "label": "LAW",
+        "color": "#3d3846",
+        "type": "bookshelf",
+        "groupId": "1745492433370"
+      },
+      {
+        "label": "LAW",
+        "color": "#3d3846",
+        "type": "bookshelf",
+        "groupId": "1745492433370"
+      },
+      {
+        "label": "LAW",
+        "color": "#3d3846",
+        "type": "bookshelf",
+        "groupId": "1745492433370"
+      },
+      {
+        "label": "LAW",
+        "color": "#3d3846",
+        "type": "bookshelf",
+        "groupId": "1745492433370"
+      }
+    ],
+    [
+      null,
+      null,
+      {
+        "label": "desk",
+        "color": "#986a44",
+        "type": "desk",
+        "groupId": "1745492364675"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  ]
+}

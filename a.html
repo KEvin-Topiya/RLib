@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bookshelf 3D</title>
+    <style>
+      body { margin: 0; overflow: hidden; }
+      canvas { display: block; }
+    </style>
+  </head>
+  <body>
+    <script type="module">
+      import * as THREE from "https://unpkg.com/three@0.153.0/build/three.module.js";
+      import { OrbitControls } from "https://unpkg.com/three@0.153.0/examples/jsm/controls/OrbitControls.js";
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color("#f0f0f0");
+
+      const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.set(5, 5, 10);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.enableZoom = true;
+
+      const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+      const directional = new THREE.DirectionalLight(0xffffff, 0.8);
+      directional.position.set(10, 10, 5);
+      scene.add(ambient, directional);
+
+      const wood = new THREE.MeshStandardMaterial({ color: "#8B4513" });
+
+      const shelfHeight = 3;
+      const shelfWidth = 2;
+      const shelfDepth = 0.4;
+      const sideThickness = 0.1;
+
+      const left = new THREE.Mesh(
+        new THREE.BoxGeometry(sideThickness, shelfHeight, shelfDepth),
+        wood
+      );
+      left.position.set(-shelfWidth / 2, shelfHeight / 2, 0);
+      scene.add(left);
+
+      const right = new THREE.Mesh(
+        new THREE.BoxGeometry(sideThickness, shelfHeight, shelfDepth),
+        wood
+      );
+      right.position.set(shelfWidth / 2, shelfHeight / 2, 0);
+      scene.add(right);
+
+      const shelfCount = 4;
+      for (let i = 0; i < shelfCount; i++) {
+        const y = i * (shelfHeight / (shelfCount - 1));
+        const shelf = new THREE.Mesh(
+          new THREE.BoxGeometry(shelfWidth, 0.1, shelfDepth),
+          wood
+        );
+        shelf.position.set(0, y, 0);
+        scene.add(shelf);
+      }
+
+      const floor = new THREE.Mesh(
+        new THREE.PlaneGeometry(20, 20),
+        new THREE.MeshStandardMaterial({ color: "#dddddd" })
+      );
+      floor.rotation.x = -Math.PI / 2;
+      scene.add(floor);
+
+      function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    </script>
+  </body>
+</html>

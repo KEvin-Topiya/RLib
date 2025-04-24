@@ -786,6 +786,16 @@ ul {
   margin-top: 10px;
 }
 
+.read-all-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #0077ff;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
 
 
 
@@ -844,6 +854,17 @@ ul {
   font-size: 16px;
   color: gray;
 }
+
+.group-by-isbn-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #5b67f3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 
 
 
