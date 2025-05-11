@@ -1,6 +1,6 @@
 # Library Management System 📚
 
-**Library Management System** is a web-based platform designed to efficiently manage book inventories, user records, and borrowing processes. Built with **React.js** (frontend) and **PHP** (backend), it offers a seamless experience for both librarians and users.
+**Library Management System** is a web-based platform designed to efficiently manage book inventories,3d library model, user records, and borrowing processes. Built with **React.js+3JS** (frontend) and **PHP** (backend), it offers a seamless experience for both librarians and users.
 
 ## 📸 Screenshot
 
@@ -14,18 +14,20 @@
 - 📥 Request book borrow/return
 - 👤 User authentication & profile management
 - 📜 View borrowing history
+- Library 3d model (generate from JSON)
 
 ### Admin Panel
 - 📚 Manage books (add, update, delete)
 - 👥 Manage users and permissions
 - 📊 Track borrow/return records
 - 🔔 Send notifications & reminders
+- create and update 3dModel of librry
 
 ## 🛠️ Technologies Used
-- **Frontend:** React.js, Tailwind CSS
+- **Frontend:** React.js, Tailwind CSS,3JS
 - **Backend:** PHP, MySQL
 - **Database:** MySQL
-- **UI:** Bootstrap, Tailwind CSS
+- **UI:**  CSS
 
 ## 🚀 Installation & Setup
 1. Clone the repository:
