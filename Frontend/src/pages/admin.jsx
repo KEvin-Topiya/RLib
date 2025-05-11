@@ -23,8 +23,8 @@ import FineList from "../components/fine";
 export default function Admin() {
   const [user, setUser] = useState({
     name:sessionStorage.id,
-    role:sessionStorage.role,
-    dp: "",
+    role:"admin",
+    dp:""
   });
 
   const ni=[
@@ -56,7 +56,7 @@ export default function Admin() {
         navitem={ni}
       />
       <div className="main hvh wf " style={{ background: "#f0f1f3" }}>
-        <Header name={user.name} role={user.role} dp={user.dp} />
+        <Header user={user} />
         <Routes>
           <Route index path="/home" element={<Dashboard role={user.role} actions={actionsData}/>} />
           <Route path="/home/addlib" element={<Adduser role={user.role} />} />

@@ -1,52 +1,108 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
+import CONFIG from "../../config";
 
-const UserFine = () => {
+const FineList = () => {
+  const [searchTerm, setSearchTerm] = useState("");
   const [fines, setFines] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Dummy Data for Fines
-  const dummyFines = [
-    { id: 1, bookTitle: "The Great Gatsby", amount: 50 },
-    { id: 2, bookTitle: "1984", amount: 30 },
-    { id: 3, bookTitle: "To Kill a Mockingbird", amount: 40 },
-  ];
-
-  // Simulating API call using useEffect
+  // Fetch fines from the API
   useEffect(() => {
-    // const fetchFines = async () => {
-    //   try {
-    //     const response = await axios.get(`${CONFIG.DOMAIN}${CONFIG.API.FINES}`);
-    //     setFines(response.data.data); // Assuming API response format: { data: [fines] }
-    //   } catch (error) {
-    //     console.error("Error fetching fines:", error);
-    //   }
-    // };
+    const fetchFines = async () => {
+      try {
+        const response = await axios.post(CONFIG.DOMAIN + CONFIG.API.Fine, {
+          id: sessionStorage.id,
+        });
 
-    // fetchFines(); // Uncomment when API is ready
+        if (response.data.status === "success") {
+          // Sort fines: unpaid first, paid after
+          const sortedFines = response.data.data.sort((a, b) => {
+            if (a.status === "unpaid" && b.status === "paid") return -1;
+            if (a.status === "paid" && b.status === "unpaid") return 1;
+            return 0;
+          });
+          setFines(sortedFines);
+        } else {
+          setError(response.data.message);
+        }
+      } catch (err) {
+        setError("Error fetching fines.");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    setFines(dummyFines); // Using dummy data for now
+    fetchFines();
   }, []);
 
+  // Filtered Fine List
+  const filteredFines = fines.filter((fine) =>
+    fine.EnrollmentNo.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  if (loading) return <p>Loading fines...</p>;
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
+
   return (
-    <div className="fine-list-container">
-      <h2>📌 Your Fines</h2>
+    <div className="user-list-container">
+      <h2>💰 Fine List</h2>
+
+      {/* Search Bar */}
+      <input
+        type="text"
+        placeholder="🔍 Search by Enrollment No..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="search-bar"
+      />
+
+      {/* Fine List */}
       <ul className="book-list">
-        {fines.length > 0 ? (
-          fines.map((fine) => (
-            <li key={fine.id} className="book-item">
-              <div>
-                <strong>{fine.bookTitle}</strong> - Fine: ₹{fine.amount}
+        {filteredFines.length > 0 ? (
+          filteredFines.map((fine) => (
+            <li
+              key={fine.fine_id}
+              className={`book-item ${fine.status === "paid" ? "paid-fine" : ""}`}
+              style={{ opacity: fine.status === "paid" ? 0.5 : 1 }}
+            >
+              <div className="user-info">
+                <strong>{fine.EnrollmentNo}</strong> -{" "}
+                <span>Book ID: {fine.book_id}</span> -{" "}
+                <span>Due Date: {fine.due_date}</span> -{" "}
+                <span className="fine-amount">₹{fine.fine_amount}</span> -{" "}
+                <span>Status: {fine.status}</span>
               </div>
-              <div className="buttons">
-                <button className="update-btn">Pay Now</button>
-              </div>
+              {fine.status === "unpaid" && (
+                <button
+                  className="btn"
+                  onClick={() => alert("Go to library for payment")}
+                >
+                  Pay
+                </button>
+              )}
             </li>
           ))
         ) : (
-          <p>No outstanding fines.</p>
+          <p className="no-users">No fines found.</p>
         )}
       </ul>
+
+      {/* Styling for paid fines */}
+      <style>
+        {`
+          .paid-fine {
+            opacity: 0.5;
+            color: gray;
+          }
+          .paid-fine:hover {
+            opacity: 0.6;
+          }
+        `}
+      </style>
     </div>
   );
 };
 
-export default UserFine;
+export default FineList;

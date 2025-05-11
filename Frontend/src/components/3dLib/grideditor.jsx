@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import CONFIG from '../../config';
+import axios from "axios";
 
 export default function GridEditor() {
   const [title, setTitle] = useState('My Grid Plan');
@@ -24,6 +26,18 @@ export default function GridEditor() {
       return newGrid;
     });
   }, [rows, cols]);
+  const handleSaveToDB = async () => {
+    const data = { title, rows, cols, grid };
+    console.log(data)
+    try {
+        const response = await axios.post(CONFIG.DOMAIN+CONFIG.API.SAVE_GRID, data);
+        alert(response.data.message);
+    } catch (error) {
+        alert('Error saving grid to database');
+        console.error(error);
+    }
+};
+
 
   const handleCellMouseDown = (row, col) => {
     setSelectedCells([{ row, col }]);
@@ -163,6 +177,8 @@ export default function GridEditor() {
         </label>
         <button onClick={handleSave} style={{ padding: '6px 12px' }}>Save Grid</button>
         <button onClick={handleTrimGrid} style={{ padding: '6px 12px' }}>Trim Grid</button>
+        <button onClick={handleSaveToDB} style={{ padding: '6px 12px', marginLeft: '10px' }}>Save to Database</button>
+
         <label style={{ display: 'inline-block', padding: '6px 12px', backgroundColor: '#ddd', cursor: 'pointer' }}>
           Upload Grid
           <input type="file" accept=".json" onChange={handleUpload} style={{ display: 'none' }} />
@@ -258,6 +274,7 @@ export default function GridEditor() {
           <button onClick={handleRemoveSelected} style={{ padding: '6px 12px', backgroundColor: '#ff4444', color: '#fff' }}>
             Remove
           </button>
+          
         </div>
       )}
     </div>

@@ -43,53 +43,60 @@ export default function Login({ r }) {
     //   }
     // }
     setError("");
-    try {
-      
-      const url = fpass
+  
+  
+
+      try {
+        const url = fpass
         ? CONFIG.DOMAIN + "/User/Forget_Password.php"
         : CONFIG.DOMAIN + "/User/User_Login.php";
-      const lg = fpass
+        const lg = fpass
         ? formData
         : {
-            id: formData.enrollment,
-            password: formData.password,
-          };
-      // console.log("Form submitted", lg);
-      const response = await axios.post(url, lg, {
-        headers: {
-          "Content-Type": "application/json",
+          id: formData.enrollment,
+          password: formData.password,
+        };
+        // console.log("Form submitted", lg);
+        const response = await axios.post(url, lg, {
+          headers: {
+            "Content-Type": "application/json",
+          }
+        });
+        if (response.data.status != "success") {
+          console.log(response.data)
+          throw new Error(response.data.message);
         }
-      });
-      if (response.data.status != "success") {
-        throw new Error(response.data.message);
+        if (!fpass) {
+          alert("Login successful!");
+          const role = response.data.user_role;
+          const id = response.data.id;
+          console.log(role)
+          r(role)
+          sessionStorage.setItem("role", role);
+          sessionStorage.setItem("id",id);
+          console.log(id)
+          // sessionStorage.setItem("role", "admin");
+          if (role == "user") {
+            navigate("/user/home");
+          }else
+          if (role == "librarian") {
+            navigate("/librarian/home");
+          }else
+          if (role == "admin") {
+            navigate("/admin/home");
+          }else{
+            // sessionStorage.setItem("role","library")
+            navigate("/library/home")
+          }
+        } else {
+          alert("Link Send to Your mail successful! reset and login.");
+          setfpass(false);
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        alert("Failed to submit form!");
       }
-      if (!fpass) {
-        alert("Login successful!");
-        const role = response.data.user_role;
-        const id = response.data.id;
-        console.log(role)
-        r(role)
-        sessionStorage.setItem("role", role);
-        sessionStorage.setItem("id",id);
-        console.log(id)
-        // sessionStorage.setItem("role", "admin");
-        if (role == "user") {
-          navigate("/user/home");
-        }
-        if (role == "librarian") {
-          navigate("/librarian/home");
-        }
-        if (role == "admin") {
-          navigate("/admin/home");
-        }
-      } else {
-        alert("Link Send to Your mail successful! reset and login.");
-        setfpass(false);
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("Failed to submit form!");
-    }
+    
   };
 
   return (

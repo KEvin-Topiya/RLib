@@ -4,6 +4,7 @@ import Login from './pages/login';
 import Student from './pages/student';
 import Librarian from './pages/librarian';
 import Admin from './pages/admin';
+import Lib from './pages/Library';
 
 function App() {
   const [role, setRole] = useState(sessionStorage.getItem("role") || null);
@@ -23,6 +24,7 @@ function App() {
         <Route path="/user/*" element={role === "user" ? <Student /> : <Navigate to="/" />} />
         <Route path="/librarian/*" element={role === "librarian" ? <Librarian /> : <Navigate to="/" />} />
         <Route path="/admin/*" element={role === "admin" ? <Admin /> : <Navigate to="/" />} />
+        <Route path="/library/*" element={role === "library" ? <Lib /> : <Navigate to="/" />} />
 
         {/* Default Redirect */}
         <Route path="*" element={<Navigate to="/" />} />

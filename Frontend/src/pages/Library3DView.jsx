@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import CONFIG from '../config';
+import axios from 'axios'
 
 export default function Grid3DFromJSON() {
   const mountRef = useRef(null);
@@ -296,6 +298,9 @@ controls.screenSpacePanning = true; // ✅ Makes panning intuitive (mouse drag d
 
     window.__searchBookshelf = highlightLabel;
 
+
+    
+    
     return () => {
       renderer.dispose();
     };
@@ -304,11 +309,54 @@ controls.screenSpacePanning = true; // ✅ Makes panning intuitive (mouse drag d
   const handleSearch = () => {
     if (window.__searchBookshelf) {
       window.__searchBookshelf(searchTerm);
-    }
+    } 
   };
 
+
+  useEffect(() => {
+    const fetchGridData = async (url) => {
+      try {
+        const response = await axios.get(url);
+        console.log("API Response:", response.data);  // Log the data
+        
+        if (response.status === 200 && response.data.status === "success" && response.data.data.grid_data) {
+          const parsedData = JSON.parse(response.data.data.grid_data);  // Parse the JSON string
+          if (parsedData.grid) {
+            return parsedData;
+          } else {
+            alert('Invalid grid data format.');
+            return null;
+          }
+        } else {
+          alert('Invalid data format from API.');
+          return null;
+        }
+      } catch (error) {
+        alert('Error fetching data from API.');
+        console.error("Fetch error:", error);
+        return null;
+      }
+    };
+    
+  
+    const loadFromAPI = async () => {
+      setLoading(true);
+      const url = CONFIG.DOMAIN + CONFIG.API.SAVE_GRID;
+      const data = await fetchGridData(url);
+      if (data) {
+        setGridData(data);
+      }
+      setLoading(false);
+    };
+  
+    // Load data when component mounts
+    loadFromAPI();
+  }, []);
+  
+  
+
   return (
-    <div>
+    <div >
       <div style={{ marginBottom: '10px' }}>
         <input
           type="text"
