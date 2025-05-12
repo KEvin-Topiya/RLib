@@ -1,7 +1,7 @@
-import CONFIG from "../../config";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { ArrowLeft, BookIcon } from "lucide-react";
+import { BookIcon } from "lucide-react";
+import CONFIG from "../../config";
 
 export default function Return() {
   const [error, setError] = useState("");
@@ -11,10 +11,10 @@ export default function Return() {
     EnrollmentNo: sessionStorage.getItem("id"),
   });
 
-  // Fetch issued books from the API
+  // Fetch the issued books from the API
   const fetchIssuedBooks = async () => {
     try {
-      const url = `${CONFIG.DOMAIN}${CONFIG.API.ISSUED_BOOKS}`;
+      const url = CONFIG.DOMAIN + CONFIG.API.ISSUED_BOOKS;
       const response = await axios.post(url, {
         EnrollmentNo: sessionStorage.getItem("id"),
       });
@@ -22,40 +22,53 @@ export default function Return() {
       if (response.data.status === "success") {
         setIssuedBooks(response.data.data);
       } else {
-        alert("Failed to fetch issued books");
+        console.error("Failed to fetch issued books");
       }
     } catch (error) {
       console.error("Error fetching issued books:", error);
     }
   };
 
+  // Load the issued books when the component is mounted
   useEffect(() => {
     fetchIssuedBooks();
   }, []);
 
-  // Handle the reissue of a book
+  // Handle book issuance
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setError("");
+    try {
+      const url = CONFIG.DOMAIN + CONFIG.API.ISSUE_BOOK;
+      const response = await axios.post(url, formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      alert(response.data.message);
+      fetchIssuedBooks(); // Refresh the list after issuing
+      setFormData({ ...formData, book_id: "" });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Error issuing book");
+    }
+  };
+
+  // Handle book renewal
   const handleReissue = async (book_id) => {
     try {
-      // Find the book to reissue
-      const bookToReissue = issuedBooks.find((book) => book.book_id === book_id);
-
-      // Check if renew_left is 0
-      if (bookToReissue.renew_left === 0) {
-        alert("Please return the book to the library, no more reissues left.");
-        return;
-      }
-
-      const url = `${CONFIG.DOMAIN}${CONFIG.API.renew}`;
-      const response = await axios.post(url, { book_id });
+      const response = await axios.post(CONFIG.DOMAIN + CONFIG.API.renew, {
+        book_id: book_id,
+        EnrollmentNo: sessionStorage.getItem("id"),
+      });
 
       if (response.data.status === "success") {
-        alert(response.data.message);
-        fetchIssuedBooks(); // Refresh the list after successful renewal
+        alert("Book renewed successfully!");
+        fetchIssuedBooks(); // Refresh the book list
       } else {
         alert(response.data.message);
       }
     } catch (error) {
-      console.error("Error renewing book:", error);
       alert("Error renewing book.");
     }
   };
@@ -66,11 +79,32 @@ export default function Return() {
         <div className="rr wf hf flx jcc">
           <form
             className="dbdr"
-            style={{ background: "white", padding: "1rem", borderRadius: "5px" }}
+            onSubmit={handleSubmit}
+            style={{
+              background: "white",
+              padding: "1rem",
+              borderRadius: "5px",
+            }}
           >
-            <legend style={{ fontSize: "x-large" }}>Issued Books</legend>
+            <legend style={{ fontSize: "x-large" }}>Issue Book</legend>
             <br />
-            <br />
+            <div className="grd">
+              <span style={{ marginBottom: "1rem" }}>
+                <BookIcon />
+                <input
+                  type="text"
+                  placeholder="Book Id"
+                  name="book_id"
+                  value={formData.book_id}
+                  onChange={(e) =>
+                    setFormData({ ...formData, book_id: e.target.value })
+                  }
+                  required
+                  className="input-field"
+                />
+              </span>
+              <button type="submit" className="btn">Issue</button>
+            </div>
           </form>
         </div>
       </div>
@@ -79,28 +113,29 @@ export default function Return() {
         <table className="tbl dbdr">
           <thead>
             <tr>
-              {Object.keys(issuedBooks[0]).map((key) => (
-                <th key={key} className="border border-gray-400 px-4 py-2 capitalize">
-                  {key.toUpperCase()}
-                </th>
-              ))}
+              <th>Book ID</th>
+              <th>Title</th>
+              <th>Issued Date</th>
+              <th>Last Date</th>
+              <th>Renewals Left</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {issuedBooks.map((book) => (
               <tr key={book.book_id}>
-                {Object.values(book).map((value, index) => (
-                  <td key={index} style={{ padding: "10px", border: "1px solid #ddd" }}>
-                    {value}
-                  </td>
-                ))}
+                <td>{book.book_id}</td>
+                <td>{book.title}</td>
+                <td>{book.issued_date}</td>
+                <td>{book.last_date}</td>
+                <td>{book.renew_left}</td>
                 <td>
                   <button
                     className="btn"
                     onClick={() => handleReissue(book.book_id)}
+                    disabled={book.renew_left <= 0}
                   >
-                    Renew
+                    {book.renew_left > 0 ? "Renew" : "No Renewals Left"}
                   </button>
                 </td>
               </tr>

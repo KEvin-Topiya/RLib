@@ -50,13 +50,7 @@ const FineList = () => {
       <h2>💰 Fine List</h2>
 
       {/* Search Bar */}
-      <input
-        type="text"
-        placeholder="🔍 Search by Enrollment No..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="search-bar"
-      />
+      
 
       {/* Fine List */}
       <ul className="book-list">

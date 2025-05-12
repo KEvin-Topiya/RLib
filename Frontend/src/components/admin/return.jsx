@@ -1,78 +1,98 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  ArrowLeft,
+  BookIcon,
+  User,
+} from "lucide-react";
 import CONFIG from "../../config";
 
-const FineList = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [fines, setFines] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+export default function Return({role}) {
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    book_id: "",
+    EnrollmentNo:""
+  });
 
-  // Fetch fines from the API
-  useEffect(() => {
-    const fetchFines = async () => {
-      try {
-        const response = await axios.post(CONFIG.DOMAIN + CONFIG.API.Fine, {
-          id: sessionStorage.id,
-        });
 
-        if (response.data.status === "success") {
-          setFines(response.data.data);
-        } else {
-          setError(response.data.message);
-        }
-      } catch (err) {
-        setError("Error fetching fines.");
-      } finally {
-        setLoading(false);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setError("");
+    try {
+      ;
+      console.log("Form submitted", formData);
+      const response = await axios.post(`${CONFIG.DOMAIN}${CONFIG.API.RETURN_BOOK}`, formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.data.status != "success") {
+        throw new Error(response.data.message);
       }
-    };
-
-    fetchFines();
-  }, []);
-
-  // Filtered Fine List
-  const filteredFines = fines.filter((fine) =>
-    fine.EnrollmentNo.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  if (loading) return <p>Loading fines...</p>;
-  if (error) return <p style={{ color: "red" }}>{error}</p>;
-
+      
+        alert("Book return successful!");
+        navigate("/admin/home/return");
+      
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Failed to submit form!");
+    }
+  }
   return (
-    <div className="user-list-container">
-      <h2>💰 Fine List</h2>
-
-      {/* Search Bar */}
-      <input
-        type="text"
-        placeholder="🔍 Search by Enrollment No..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="search-bar"
-      />
-
-      {/* Fine List */}
-      <ul className="book-list">
-        {filteredFines.length > 0 ? (
-          filteredFines.map((fine) => (
-            <li key={fine.fine_id} className="book-item">
-              <div className="user-info">
-                <strong>{fine.EnrollmentNo}</strong> -{" "}
-                <span>Book ID: {fine.book_id}</span> -{" "}
-                <span>Due Date: {fine.due_date}</span> -{" "}
-                <span className="fine-amount">₹{fine.fine_amount}</span> -{" "}
-                <span>Status: {fine.status}</span>
-              </div>
-              <button className="btn" onClick={()=>alert("go to library for pay")}>Pay</button>
-            </li>
-          ))
-        ) : (
-          <p className="no-users">No fines found.</p>
-        )}
-      </ul>
-    </div>
+    <>
+      <Link to={"/"+role+"/home"} className="back flx">
+        <ArrowLeft /> back
+      </Link>
+      <div className="flx login " style={{ marginTop: "1rem" }}>
+        <div className="rr wf hf flx jcc">
+          <form
+            onSubmit={handleSubmit}
+            style={{
+              background: "white",
+              padding: "1rem",
+              borderRadius: "5px",
+            }}
+          >
+            <legend
+              style={{ fontSize: "x-large" }}
+            >Retrun Book</legend>
+            <br />
+            <br />
+            <div className="grd">
+              <span>
+                <BookIcon />
+                <input
+                  type="text"
+                  placeholder="Book Id"
+                  name="book_id"
+                  onChange={(e) =>
+                    setFormData({ ...formData, book_id: e.target.value })
+                }
+                  required
+                />
+              </span>
+               <span style={{ marginBottom: "1rem" }}>
+                <User />
+                <input
+                  type="text"
+                  placeholder="EnrollmentNo"
+                  name="EnrollmentNo"
+                  onChange={(e) =>
+                    setFormData({ ...formData, EnrollmentNo: e.target.value })
+                }
+                  required
+                />
+              </span>
+              <button type="submit" className="btn">
+                Upload
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+    </>
   );
-};
-
-export default FineList;
+}
