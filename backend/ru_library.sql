@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 11, 2025 at 08:05 AM
+-- Generation Time: May 12, 2025 at 02:47 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -73,9 +73,9 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`book_id`, `title`, `author`, `isbn`, `publication_year`, `total_issued`, `status`, `created_at`) VALUES
-('1', 'The Excel Bible', 'John Walkenbach', '978-1118490365', 2013, 3, 'not_available', '2025-02-18 19:07:57'),
-('10', 'Excel Macros For Dummies', 'Dick Kusleika', '978-1118490365', 2018, 6, 'not_available', '2025-02-18 19:07:57'),
-('11', 'Excel for Accountants', 'Conrad George Carlberg', '978-0789739307', 2010, 5, 'available', '2025-02-18 19:07:57'),
+('1', 'The Excel Bible', 'John Walkenbach', '978-1118490365', 2013, 4, 'available', '2025-02-18 19:07:57'),
+('10', 'Excel Macros For Dummies', 'Dick Kusleika', '978-1118490365', 2018, 6, 'available', '2025-02-18 19:07:57'),
+('11', 'Excel for Accountants', 'Conrad George Carlberg', '978-0789739307', 2010, 7, 'not_available', '2025-02-18 19:07:57'),
 ('12', 'Advanced Excel Reporting for Management', 'Neale Blackwood', '978-1118657720', 2014, 1, 'available', '2025-02-18 19:07:57'),
 ('13', 'Excel Quick Start Guide', 'M.L. Humphrey', '978-1979214809', 2017, 0, 'available', '2025-02-18 19:07:57'),
 ('14', 'Microsoft Excel Inside Out', 'Mark Dodge', '978-0735623210', 2013, 0, 'available', '2025-02-18 19:07:57'),
@@ -84,10 +84,11 @@ INSERT INTO `books` (`book_id`, `title`, `author`, `isbn`, `publication_year`, `
 ('17', 'Excel Financial Modeling', 'Danielle Stein Fairhurst', '978-1119520382', 2019, 0, 'available', '2025-02-18 19:07:57'),
 ('18', 'Excel Automation with VBA', 'Richard Shepherd', '978-0071743729', 2011, 0, 'available', '2025-02-18 19:07:57'),
 ('19', 'Excel Formulas 101', 'Oz du Soleil', '978-1615470551', 2015, 0, 'available', '2025-02-18 19:07:57'),
-('2', 'Excel Formulas &amp; Functions for Dummies', 'Ken Bluttman', '978-1119518259', 2018, 0, 'available', '2025-02-18 19:07:57'),
+('2', 'Excel Formulas &amp; Functions for Dummies', 'Ken Bluttman', '978-1119518259', 2018, 1, 'available', '2025-02-18 19:07:57'),
 ('20', 'Microsoft Excel Step by Step', 'Curtis Frye', '978-1509307753', 2020, 0, 'available', '2025-02-18 19:07:57'),
 ('21', 'Excel Power Pivot and Power Query', 'Leila Gharani', '978-1615472319', 2021, 0, 'available', '2025-02-18 19:07:57'),
-('22', 'Excel for Engineers and Scientists', 'Ronald E. Walpole', '978-0131481976', 2006, 0, 'available', '2025-02-18 19:07:57'),
+('22', 'Excel for Engineers and Scientists', 'Ronald E. Walpole', '978-0131481976', 2006, 1, 'not_available', '2025-02-18 19:07:57'),
+('222', 'sfgsg', 'sdff', '1234567891234', 2012, 0, 'available', '2025-05-11 21:56:28'),
 ('23', 'Microsoft Excel 365 Formulas', 'Paul McFedries', '978-0789758759', 2021, 0, 'available', '2025-02-18 19:07:57'),
 ('24', 'Excel Data Analysis Made Simple', 'Ankur Jain', '978-1787287706', 2017, 0, 'available', '2025-02-18 19:07:57'),
 ('25', 'Financial Analysis with Excel', 'Timothy R. Mayes', '978-0357108130', 2019, 0, 'available', '2025-02-18 19:07:57'),
@@ -97,7 +98,9 @@ INSERT INTO `books` (`book_id`, `title`, `author`, `isbn`, `publication_year`, `
 ('29', 'Excel Statistical Analysis', 'Joseph Schmuller', '978-1119271161', 2017, 0, 'available', '2025-02-18 19:07:57'),
 ('3', 'Excel Power Query and Power Pivot', 'Chris Dutton', '978-1119518253', 2020, 0, 'available', '2025-02-18 19:07:57'),
 ('30', 'Excel for Beginners', 'John Wiley', '978-1119476154', 2016, 0, 'available', '2025-02-18 19:07:57'),
+('333', 'svsv', 'abc', '1234567891234', 2222, 0, 'available', '2025-05-11 21:51:47'),
 ('4', 'Excel 2019 Power Programming', 'Michael Alexander', '978-1119514923', 2019, 0, 'available', '2025-02-18 19:07:57'),
+('4444', 'fsdg', 'bdbdfb', '12345678914123', 2222, 0, 'available', '2025-05-11 21:54:34'),
 ('5', 'Excel Data Analysis For Dummies', 'Stephen L. Nelson', '978-1119518167', 2020, 0, 'available', '2025-02-18 19:07:57'),
 ('6', 'Learn Excel in 24 Hours', 'Alex Nordeen', '978-9389845343', 2021, 0, 'available', '2025-02-18 19:07:57'),
 ('7', 'Excel 2016 for Beginners', 'M.L. Humphrey', '978-1975685979', 2016, 0, 'available', '2025-02-18 19:07:57'),
@@ -178,7 +181,12 @@ INSERT INTO `history` (`id`, `book_id`, `EnrollmentNo`, `title`, `issued_date`) 
 (32, '11', 'test', 'Excel for Accountants', '2025-03-24'),
 (33, '11', 'test', 'Excel for Accountants', '2025-03-25'),
 (34, '11', 'test', 'Excel for Accountants', '2025-03-28'),
-(35, '11', 'test', 'Excel for Accountants', '2025-03-28');
+(35, '11', 'test', 'Excel for Accountants', '2025-03-28'),
+(36, '1', 'test', 'The Excel Bible', '2025-05-11'),
+(37, '10', '24MCA021', 'Excel Macros For Dummies', '2025-03-07'),
+(38, '11', 'test', 'Excel for Accountants', '2025-05-11'),
+(39, '1', 'test', 'The Excel Bible', '2025-05-12'),
+(40, '2', 'test', 'Excel Formulas &amp; Functions for Dummies', '2025-05-12');
 
 -- --------------------------------------------------------
 
@@ -200,8 +208,8 @@ CREATE TABLE `issued_books` (
 --
 
 INSERT INTO `issued_books` (`id`, `book_id`, `EnrollmentNo`, `issued_date`, `last_date`, `renew_left`) VALUES
-(33, '10', '24MCA021', '2025-03-07', '2025-03-20', 3),
-(37, '1', 'test', '2025-05-11', '2025-05-25', 1);
+(40, '11', 'test', '2025-05-12', '2025-05-26', 3),
+(41, '22', 'test', '2025-05-12', '2025-05-26', 3);
 
 --
 -- Triggers `issued_books`
@@ -289,7 +297,17 @@ INSERT INTO `notifications` (`id`, `EnrollmentNo`, `noti_title`, `description`, 
 (12, 'test', 'Book_returned', 'Your Book ID: 11 has been returned successfully.', 'seen', '2025-03-28 09:38:29', NULL),
 (13, 'test', 'password_updated', 'Your password has been updated successfully.', 'unseen', '2025-05-11 01:25:04', NULL),
 (14, 'test', 'Book_issued', 'Your Book ID: 1 has been issued successfully. Due date: 2025-05-25.', 'unseen', '2025-05-11 01:31:52', NULL),
-(15, 'test', 'password_updated', 'Your password has been updated successfully.', 'unseen', '2025-05-11 06:00:56', NULL);
+(15, 'test', 'password_updated', 'Your password has been updated successfully.', 'unseen', '2025-05-11 06:00:56', NULL),
+(16, 'test', 'Book_returned', 'Your Book ID: 1 has been returned successfully.', 'unseen', '2025-05-11 21:19:10', NULL),
+(17, '24MCA021', 'Book_returned', 'Your Book ID: 10 has been returned successfully.', 'unseen', '2025-05-11 21:24:21', NULL),
+(18, 'test', 'Book_issued', 'Your Book ID: 11 has been issued successfully. Due date: 2025-05-25.', 'unseen', '2025-05-11 21:29:53', NULL),
+(19, 'test', 'Book_returned', 'Your Book ID: 11 has been returned successfully.', 'unseen', '2025-05-11 22:22:25', NULL),
+(20, 'test', 'Book_issued', 'Your Book ID: 1 has been issued successfully. Due date: 2025-05-26.', 'unseen', '2025-05-11 22:23:23', NULL),
+(21, 'test', 'Book_issued', 'Your Book ID: 11 has been issued successfully. Due date: 2025-05-26.', 'unseen', '2025-05-11 22:23:26', NULL),
+(22, 'test', 'Book_issued', 'Your Book ID: 22 has been issued successfully. Due date: 2025-05-26.', 'unseen', '2025-05-11 22:23:39', NULL),
+(23, 'test', 'Book_issued', 'Your Book ID: 2 has been issued successfully. Due date: 2025-05-26.', 'unseen', '2025-05-11 22:23:42', NULL),
+(24, 'test', 'Book_returned', 'Your Book ID: 1 has been returned successfully.', 'unseen', '2025-05-11 22:24:06', NULL),
+(25, 'test', 'Book_returned', 'Your Book ID: 2 has been returned successfully.', 'unseen', '2025-05-11 22:24:49', NULL);
 
 -- --------------------------------------------------------
 
@@ -449,13 +467,13 @@ ALTER TABLE `grids`
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `issued_books`
 --
 ALTER TABLE `issued_books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `library_entry`
@@ -467,7 +485,7 @@ ALTER TABLE `library_entry`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `payments`
