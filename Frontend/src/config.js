@@ -12,6 +12,7 @@ const CONFIG = {
       RETURN_BOOK:"/Books/Return_Book.php",
       hello:"/hello.php",
       ExcelBOOK:"/Books/Upload_Books.php",
+      ExcelUser:"/Admin/Upload_User.php",
       BOOKS:"/Books/Fetch_Book.php",
       Fetch_user: "/User/Fetchusers.php",
       EDIT_user: "/User/Update_User_Info.php",

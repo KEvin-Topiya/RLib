@@ -47,7 +47,7 @@ const FileUpload = ({role}) => {
       
      
 
-      const response = await axios.post(rol=="books"?`${CONFIG.DOMAIN}${CONFIG.API.ExcelBOOK}`:`${CONFIG.DOMAIN}${CONFIG.API.test}`, formData, { headers: { "Content-Type": "multipart/form-data" } });
+      const response = await axios.post(rol=="books"?`${CONFIG.DOMAIN}${CONFIG.API.ExcelBOOK}`:`${CONFIG.DOMAIN}${CONFIG.API.ExcelUser}`, formData, { headers: { "Content-Type": "multipart/form-data" } });
 
       if (response.data.status !== "success") {
         throw new Error(response.data.message);
@@ -77,18 +77,16 @@ const FileUpload = ({role}) => {
             total_issued: "0",
           }
         : {
-            full_name: "user",
-            email: "user@gmail.com",
-            phone: "1234567890",
-            UID: "24MCA000",
-            course: "mca",
-            course_year: "2024",
-            department: "engineering",
-            current_address: "rai university hostel",
-            permanent_address: "rai university",
-            DOB: "yyyy-mm-dd",
-            password: "********",
-          }
+          "EnrollmentNo": "RUST-000001",
+          "StudentName": "John Doe",
+          "PhoneStudent": 1234567890,
+          "Email": "john@example.com",
+          "EmailAlternate": "john@alternate.com",
+          "AcademicYearName": "2025-2026",
+          "ProgramName": "Computer Science",
+          "Semester": 1
+      }
+      
     );
   }, [rol]);
 
