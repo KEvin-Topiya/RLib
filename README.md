@@ -58,7 +58,7 @@ Use the following default credentials to log in with different roles:
 > 🔒 **Note:** It is strongly recommended to change default passwords after the initial login in a production environment.
 
 ## sample Excel File for student and books for upload at admin side in root folder
-books.xlsx
+books.xlsx | 
 students.xslx
 
 
