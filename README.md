@@ -44,5 +44,28 @@
 4. Configure the backend in your PHP environment and import the MySQL database.
 5. Run the application and access it via a web browser.
 
+## 🔐 Default Credentials
+
+Use the following default credentials to log in with different roles:
+
+| Role        | Username              | Password      |
+|-------------|-----------------------|---------------|
+| Admin       | `ADMIN123`            | `VRK`         |
+| Librarian   | `EID12345`            | `VRK`         |
+| Library     | `lib`                 | `lib`         |
+| Student     | `test`                | `123`         |
+
+> 🔒 **Note:** It is strongly recommended to change default passwords after the initial login in a production environment.
+
+## sample Excel File for student and books for upload at admin side in root folder
+books.xlsx
+students.xslx
 
 
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+Made with ❤️ by Kevin Topiya

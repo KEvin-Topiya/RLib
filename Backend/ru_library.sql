@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 12, 2025 at 02:47 AM
+-- Generation Time: Jun 11, 2025 at 09:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -49,7 +49,8 @@ CREATE TABLE `administrator` (
 INSERT INTO `administrator` (`id`, `name`, `email`, `phone`, `EID`, `current_address`, `permanent_address`, `DOB`, `profile`, `password`, `user_role`, `created_at`) VALUES
 (1, 'Admin User', 'admin@example.com', '9876543210', 'EID12345', 'Admin Street, City', 'Admin Permanent Address', '1985-08-20', 'default.png', '$2y$10$rcEwAhey7G6xBLkvAY6Qv.egbFNdjFROoQaWT67p6izE9Gri03UM.', 'librarian', '2025-02-12 15:42:16'),
 (2, 'Admin', 'admin@gmail.com', '7896541230', 'ADMIN123', 'udaipur', 'udaipur', '2002-02-02', 'profile.png', '$2y$10$rcEwAhey7G6xBLkvAY6Qv.egbFNdjFROoQaWT67p6izE9Gri03UM.', 'admin', '2025-02-15 17:41:13'),
-(3, 'library', 'library@r.r', '1234567890', 'lib', 'rai university', 'rai university', '2000-01-01', 'profile.png', '$2y$10$5soYSmtJwuWy1t8JUzROX.jVp6ssaIdbDs9PTRQIwskfQCWBNngTq', 'library', '2025-05-11 04:23:23');
+(3, 'library', 'library@r.r', '1234567890', 'lib', 'rai university', 'rai university', '2000-01-01', 'profile.png', '$2y$10$5soYSmtJwuWy1t8JUzROX.jVp6ssaIdbDs9PTRQIwskfQCWBNngTq', 'library', '2025-05-11 04:23:23'),
+(4, 'abc', 'a@b.c', '1234567891', 'abc', 'agvv', 'sdgv', '2000-01-01', 'profile.png', '$2y$10$pu/Oxkr1b3tvxYufbG/1aOTy3/X1J9ryP1/jZ8eJ3kYStlWWFwOIK', 'librarian', '2025-05-27 11:08:27');
 
 -- --------------------------------------------------------
 
@@ -73,39 +74,25 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`book_id`, `title`, `author`, `isbn`, `publication_year`, `total_issued`, `status`, `created_at`) VALUES
-('1', 'The Excel Bible', 'John Walkenbach', '978-1118490365', 2013, 4, 'available', '2025-02-18 19:07:57'),
-('10', 'Excel Macros For Dummies', 'Dick Kusleika', '978-1118490365', 2018, 6, 'available', '2025-02-18 19:07:57'),
-('11', 'Excel for Accountants', 'Conrad George Carlberg', '978-0789739307', 2010, 7, 'not_available', '2025-02-18 19:07:57'),
-('12', 'Advanced Excel Reporting for Management', 'Neale Blackwood', '978-1118657720', 2014, 1, 'available', '2025-02-18 19:07:57'),
-('13', 'Excel Quick Start Guide', 'M.L. Humphrey', '978-1979214809', 2017, 0, 'available', '2025-02-18 19:07:57'),
-('14', 'Microsoft Excel Inside Out', 'Mark Dodge', '978-0735623210', 2013, 0, 'available', '2025-02-18 19:07:57'),
+('1000', 'The Great Gatsby', 'F. Scott Fitzgerald', '9780743273565', 1925, 5, 'available', '2025-05-27 11:06:25'),
+('1010', 'To Kill a Mockingbird', 'Harper Lee', '9780061120084', 1960, 8, 'available', '2025-05-27 11:06:25'),
+('1011', 'abc', 'abc', '1234567891234', 2000, 0, 'available', '2025-05-27 11:08:52'),
+('1020', '1984', 'George Orwell', '9780451524935', 1949, 4, 'available', '2025-05-27 11:06:25'),
+('1030', 'Moby-Dick', 'Herman Melville', '9781503280786', 1851, 2, 'available', '2025-05-27 11:06:26'),
+('1040', 'Pride and Prejudice', 'Jane Austen', '9781503290563', 1813, 11, 'not_available', '2025-05-27 11:06:30'),
 ('15', 'Excel 2019 Basics', 'Lalwani Lokesh', '978-9389611290', 2019, 0, 'available', '2025-02-18 19:07:57'),
 ('16', 'The Definitive Guide to DAX', 'Marco Russo', '978-1509306978', 2019, 0, 'available', '2025-02-18 19:07:57'),
 ('17', 'Excel Financial Modeling', 'Danielle Stein Fairhurst', '978-1119520382', 2019, 0, 'available', '2025-02-18 19:07:57'),
-('18', 'Excel Automation with VBA', 'Richard Shepherd', '978-0071743729', 2011, 0, 'available', '2025-02-18 19:07:57'),
-('19', 'Excel Formulas 101', 'Oz du Soleil', '978-1615470551', 2015, 0, 'available', '2025-02-18 19:07:57'),
-('2', 'Excel Formulas &amp; Functions for Dummies', 'Ken Bluttman', '978-1119518259', 2018, 1, 'available', '2025-02-18 19:07:57'),
 ('20', 'Microsoft Excel Step by Step', 'Curtis Frye', '978-1509307753', 2020, 0, 'available', '2025-02-18 19:07:57'),
 ('21', 'Excel Power Pivot and Power Query', 'Leila Gharani', '978-1615472319', 2021, 0, 'available', '2025-02-18 19:07:57'),
-('22', 'Excel for Engineers and Scientists', 'Ronald E. Walpole', '978-0131481976', 2006, 1, 'not_available', '2025-02-18 19:07:57'),
-('222', 'sfgsg', 'sdff', '1234567891234', 2012, 0, 'available', '2025-05-11 21:56:28'),
 ('23', 'Microsoft Excel 365 Formulas', 'Paul McFedries', '978-0789758759', 2021, 0, 'available', '2025-02-18 19:07:57'),
-('24', 'Excel Data Analysis Made Simple', 'Ankur Jain', '978-1787287706', 2017, 0, 'available', '2025-02-18 19:07:57'),
 ('25', 'Financial Analysis with Excel', 'Timothy R. Mayes', '978-0357108130', 2019, 0, 'available', '2025-02-18 19:07:57'),
 ('26', 'Data Visualization with Excel', 'Jonathan Schwabish', '978-0231188651', 2021, 0, 'available', '2025-02-18 19:07:57'),
-('27', 'Excel in Depth', 'Bill Jelen', '978-0789747074', 2013, 0, 'available', '2025-02-18 19:07:57'),
-('28', 'Excel for Scientists and Engineers', 'E. Joseph Billo', '978-0470381236', 2007, 0, 'available', '2025-02-18 19:07:57'),
-('29', 'Excel Statistical Analysis', 'Joseph Schmuller', '978-1119271161', 2017, 0, 'available', '2025-02-18 19:07:57'),
 ('3', 'Excel Power Query and Power Pivot', 'Chris Dutton', '978-1119518253', 2020, 0, 'available', '2025-02-18 19:07:57'),
-('30', 'Excel for Beginners', 'John Wiley', '978-1119476154', 2016, 0, 'available', '2025-02-18 19:07:57'),
 ('333', 'svsv', 'abc', '1234567891234', 2222, 0, 'available', '2025-05-11 21:51:47'),
-('4', 'Excel 2019 Power Programming', 'Michael Alexander', '978-1119514923', 2019, 0, 'available', '2025-02-18 19:07:57'),
 ('4444', 'fsdg', 'bdbdfb', '12345678914123', 2222, 0, 'available', '2025-05-11 21:54:34'),
 ('5', 'Excel Data Analysis For Dummies', 'Stephen L. Nelson', '978-1119518167', 2020, 0, 'available', '2025-02-18 19:07:57'),
-('6', 'Learn Excel in 24 Hours', 'Alex Nordeen', '978-9389845343', 2021, 0, 'available', '2025-02-18 19:07:57'),
-('7', 'Excel 2016 for Beginners', 'M.L. Humphrey', '978-1975685979', 2016, 0, 'available', '2025-02-18 19:07:57'),
-('8', 'Microsoft Excel Functions &amp; Formulas', 'Bernd Held', '978-1933241016', 2014, 0, 'available', '2025-02-18 19:07:57'),
-('9', 'Excel Dashboards and Reports', 'Michael Alexander', '978-1119514756', 2019, 0, 'available', '2025-02-18 19:07:57');
+('6', 'Learn Excel in 24 Hours', 'Alex Nordeen', '978-9389845343', 2021, 0, 'available', '2025-02-18 19:07:57');
 
 -- --------------------------------------------------------
 
@@ -127,7 +114,7 @@ CREATE TABLE `fines` (
 --
 
 INSERT INTO `fines` (`fine_id`, `EnrollmentNo`, `book_id`, `due_date`, `fine_amount`, `status`) VALUES
-(1, '24MCA021', 10, '2025-03-22', 25.00, 'unpaid'),
+(1, '24MCA021', 10, '2025-03-22', 25.00, 'paid'),
 (2, 'test', 11, '2025-05-15', 50.00, 'unpaid');
 
 -- --------------------------------------------------------
@@ -164,30 +151,6 @@ CREATE TABLE `history` (
   `issued_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `history`
---
-
-INSERT INTO `history` (`id`, `book_id`, `EnrollmentNo`, `title`, `issued_date`) VALUES
-(23, '1', '24MCA009', 'The Excel Bible', '2025-03-07'),
-(24, '1', '24MCA009', 'The Excel Bible', '2025-03-07'),
-(25, '10', '24MCA009', 'Excel Macros For Dummies', '2025-03-07'),
-(26, '10', '24MCA009', 'Excel Macros For Dummies', '2025-03-07'),
-(27, '11', '24MCA009', 'Excel for Accountants', '2025-03-07'),
-(28, '12', '24MCA009', 'Advanced Excel Reporting for Management', '2025-03-07'),
-(29, '10', '24MCA009', 'Excel Macros For Dummies', '2025-03-07'),
-(30, '10', '24MCA009', 'Excel Macros For Dummies', '2025-03-07'),
-(31, '10', '24MCA009', 'Excel Macros For Dummies', '2025-03-07'),
-(32, '11', 'test', 'Excel for Accountants', '2025-03-24'),
-(33, '11', 'test', 'Excel for Accountants', '2025-03-25'),
-(34, '11', 'test', 'Excel for Accountants', '2025-03-28'),
-(35, '11', 'test', 'Excel for Accountants', '2025-03-28'),
-(36, '1', 'test', 'The Excel Bible', '2025-05-11'),
-(37, '10', '24MCA021', 'Excel Macros For Dummies', '2025-03-07'),
-(38, '11', 'test', 'Excel for Accountants', '2025-05-11'),
-(39, '1', 'test', 'The Excel Bible', '2025-05-12'),
-(40, '2', 'test', 'Excel Formulas &amp; Functions for Dummies', '2025-05-12');
-
 -- --------------------------------------------------------
 
 --
@@ -208,8 +171,7 @@ CREATE TABLE `issued_books` (
 --
 
 INSERT INTO `issued_books` (`id`, `book_id`, `EnrollmentNo`, `issued_date`, `last_date`, `renew_left`) VALUES
-(40, '11', 'test', '2025-05-12', '2025-05-26', 3),
-(41, '22', 'test', '2025-05-12', '2025-05-26', 3);
+(45, '1040', 'test', '2025-05-27', '2025-06-25', 2);
 
 --
 -- Triggers `issued_books`
@@ -295,19 +257,22 @@ INSERT INTO `notifications` (`id`, `EnrollmentNo`, `noti_title`, `description`, 
 (10, 'test', 'Book_returned', 'Your Book ID: 11 has been returned successfully.', 'seen', '2025-03-28 09:37:50', NULL),
 (11, 'test', 'Book_issued', 'Your Book ID: 11 has been issued successfully. Due date: 2025-04-11.', 'seen', '2025-03-28 09:38:11', NULL),
 (12, 'test', 'Book_returned', 'Your Book ID: 11 has been returned successfully.', 'seen', '2025-03-28 09:38:29', NULL),
-(13, 'test', 'password_updated', 'Your password has been updated successfully.', 'unseen', '2025-05-11 01:25:04', NULL),
-(14, 'test', 'Book_issued', 'Your Book ID: 1 has been issued successfully. Due date: 2025-05-25.', 'unseen', '2025-05-11 01:31:52', NULL),
-(15, 'test', 'password_updated', 'Your password has been updated successfully.', 'unseen', '2025-05-11 06:00:56', NULL),
-(16, 'test', 'Book_returned', 'Your Book ID: 1 has been returned successfully.', 'unseen', '2025-05-11 21:19:10', NULL),
+(13, 'test', 'password_updated', 'Your password has been updated successfully.', 'seen', '2025-05-11 01:25:04', NULL),
+(14, 'test', 'Book_issued', 'Your Book ID: 1 has been issued successfully. Due date: 2025-05-25.', 'seen', '2025-05-11 01:31:52', NULL),
+(15, 'test', 'password_updated', 'Your password has been updated successfully.', 'seen', '2025-05-11 06:00:56', NULL),
+(16, 'test', 'Book_returned', 'Your Book ID: 1 has been returned successfully.', 'seen', '2025-05-11 21:19:10', NULL),
 (17, '24MCA021', 'Book_returned', 'Your Book ID: 10 has been returned successfully.', 'unseen', '2025-05-11 21:24:21', NULL),
-(18, 'test', 'Book_issued', 'Your Book ID: 11 has been issued successfully. Due date: 2025-05-25.', 'unseen', '2025-05-11 21:29:53', NULL),
-(19, 'test', 'Book_returned', 'Your Book ID: 11 has been returned successfully.', 'unseen', '2025-05-11 22:22:25', NULL),
-(20, 'test', 'Book_issued', 'Your Book ID: 1 has been issued successfully. Due date: 2025-05-26.', 'unseen', '2025-05-11 22:23:23', NULL),
-(21, 'test', 'Book_issued', 'Your Book ID: 11 has been issued successfully. Due date: 2025-05-26.', 'unseen', '2025-05-11 22:23:26', NULL),
-(22, 'test', 'Book_issued', 'Your Book ID: 22 has been issued successfully. Due date: 2025-05-26.', 'unseen', '2025-05-11 22:23:39', NULL),
-(23, 'test', 'Book_issued', 'Your Book ID: 2 has been issued successfully. Due date: 2025-05-26.', 'unseen', '2025-05-11 22:23:42', NULL),
-(24, 'test', 'Book_returned', 'Your Book ID: 1 has been returned successfully.', 'unseen', '2025-05-11 22:24:06', NULL),
-(25, 'test', 'Book_returned', 'Your Book ID: 2 has been returned successfully.', 'unseen', '2025-05-11 22:24:49', NULL);
+(18, 'test', 'Book_issued', 'Your Book ID: 11 has been issued successfully. Due date: 2025-05-25.', 'seen', '2025-05-11 21:29:53', NULL),
+(19, 'test', 'Book_returned', 'Your Book ID: 11 has been returned successfully.', 'seen', '2025-05-11 22:22:25', NULL),
+(20, 'test', 'Book_issued', 'Your Book ID: 1 has been issued successfully. Due date: 2025-05-26.', 'seen', '2025-05-11 22:23:23', NULL),
+(21, 'test', 'Book_issued', 'Your Book ID: 11 has been issued successfully. Due date: 2025-05-26.', 'seen', '2025-05-11 22:23:26', NULL),
+(22, 'test', 'Book_issued', 'Your Book ID: 22 has been issued successfully. Due date: 2025-05-26.', 'seen', '2025-05-11 22:23:39', NULL),
+(23, 'test', 'Book_issued', 'Your Book ID: 2 has been issued successfully. Due date: 2025-05-26.', 'seen', '2025-05-11 22:23:42', NULL),
+(24, 'test', 'Book_returned', 'Your Book ID: 1 has been returned successfully.', 'seen', '2025-05-11 22:24:06', NULL),
+(25, 'test', 'Book_returned', 'Your Book ID: 2 has been returned successfully.', 'seen', '2025-05-11 22:24:49', NULL),
+(26, 'kavyta', 'password_updated', 'Your password has been updated successfully.', 'unseen', '2025-05-16 23:26:55', NULL),
+(27, 'test', 'Book_issued', 'Your Book ID: 1040 has been issued successfully. Due date: 2025-06-10.', 'unseen', '2025-05-27 11:09:22', NULL),
+(28, 'test', 'password_updated', 'Your password has been updated successfully.', 'unseen', '2025-05-27 11:19:52', NULL);
 
 -- --------------------------------------------------------
 
@@ -362,7 +327,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`EnrollmentNo`, `StudentName`, `PhoneStudent`, `Email`, `EmailAlternate`, `AcademicYearName`, `ProgramName`, `Semester`, `password`, `profile`) VALUES
 ('24MCA009', 'Renish Limbasiya', '8799039344', 'rlimbasiya090@gmail.com', '24MCA009@raiuniversity.edu', '2024-25', 'RSE - MCA', 2, '$2y$10$9dyT9BWjwq/yMwd4H.k22OL8qHsxTqgMVggEo25E7JrBDtL7lZE.6', 'profile.png'),
 ('24MCA021', 'Vikas Meena', '8107557454', 'meena.vikas1102@gmail.com', '24MCA021@raiuniversity.edu', '2024-25', 'RSE-MCA', 2, 'mRFfKtk4', 'profile.png'),
-('test', 'test', '6356893665', 'ktopiya027@rku.ac.in', 'test@t.t', '2024-26', 'test', 2, '$2y$10$rmXWfB6EqF6Vi2kILONsLeCKJ6o6vVfbTrJ4uAtj9kYp9LxYwFArK', 'kill.png');
+('test', 'test', '6356893665', 'ktopiya027@rku.ac.in', 'test@t.t', '2024-26', 'test', 2, '$2y$10$exIcZ2hmiWxs9lymemkwZucTjs7bEKGS9dkVNWlgzGD5kfuZ75AQO', 'kill.png');
 
 --
 -- Indexes for dumped tables
@@ -449,7 +414,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `administrator`
 --
 ALTER TABLE `administrator`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `fines`
@@ -467,13 +432,13 @@ ALTER TABLE `grids`
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `issued_books`
 --
 ALTER TABLE `issued_books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `library_entry`
@@ -485,7 +450,7 @@ ALTER TABLE `library_entry`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `payments`
